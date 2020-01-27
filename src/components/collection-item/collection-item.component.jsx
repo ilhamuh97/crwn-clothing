@@ -4,7 +4,7 @@ import './collection-item.styles.scss'
 
 const CollectionItem= ({id, name, imageUrl, price})=>
 (
-    <div className="collection-item">
+    <div key={id} className="collection-item">
         <div className="image"
             style={{
                 backgroundImage:`url(${imageUrl})`
