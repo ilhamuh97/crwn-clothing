@@ -1,49 +1,49 @@
 import React from 'react';
 import './App.css';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 
 import HomePage from "./pages/homepage/homepage.component"
 import ShopPage from "./pages/shop/shop.component"
 import SignInSignUp from "./pages/signinsignup/signinsignup.component"
 import Header from "./components/header/header.component"
-import {auth} from "./firebase/firebase.util"
+import { auth } from "./firebase/firebase.util"
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
-    this.state ={
-      currentUser : null
+    this.state = {
+      currentUser: null
     }
   }
 
   unSubscripeFromAuth = null;
 
-  componentDidMount(){
+  componentDidMount() {
     this.unSubscripeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser: user});
+      this.setState({ currentUser: user });
       console.log(user);
     })
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unSubscripeFromAuth();
   }
 
-  render(){
+  render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.currentUser} />
         <Switch>
-          <Route exact path='/' component={HomePage}/>
-          <Route path ='/shop' component={ShopPage}/>
-          <Route path ='/signin' component={SignInSignUp}/>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route path='/signin' component={SignInSignUp} />
           <Route path='/*' component={() => <Redirect to="/" />} />
         </Switch>
       </div>
     );
-    
+
   }
 }
 

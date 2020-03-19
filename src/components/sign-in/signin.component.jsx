@@ -51,14 +51,15 @@ class SignIn extends React.Component {
                         //key = variable satuan didalam map
                         stateKey.map(key => this.getFormInput(key))
                     }
-
+                </form>
+                <div className="buttons">
                     <CustomButton type="submit">Sign In</CustomButton>
-                    <CustomButton onClick={signInWithGoogle}>
+                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
                         {' '}
                         Sign In with Google
                         {' '}
                     </CustomButton>
-                </form>
+                </div>
             </div>
 
         );
